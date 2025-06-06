@@ -73,6 +73,11 @@ Checks the Cross-Origin Resource Sharing (CORS) policy of a website.
 ```bash
 curl -H "Origin: http://example.com" -I https://example.com/wp-json/
 ```
+## JS File Hunting
+Collects JavaScript files from a website and analyzes them.
+```bash
+echo example.com | katana -d 5 | grep -E "\.js$" | tee website.txt | cat website.txt nuclei -t /path/to/nuclei-templates/http/exposures/ -c 30
+```
 
 ## 🌐 Network Scanning
 This section contains various one-liner commands and tools for scanning networks, identifying open ports, services, and potential vulnerabilities.
@@ -82,3 +87,5 @@ Performs a full port scan using Nmap.
 ```bash
 nmap -p- --min-rate 1000 -T4 -A example.com -oA fullscan
 ```
+
+
