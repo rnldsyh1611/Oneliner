@@ -58,5 +58,27 @@ Searches for exposed API keys and tokens in JavaScript files.
 ```bash
 cat allurls.txt | grep -E "\.js$" | httpx-toolkit -mc 200 -content-type | grep -E "application/javascript|text/javascript" | cut -d' ' -f1 | xargs -I% curl -s % | grep -E "(API_KEY|api_key|apikey|secret|token|password)"
 ```
+## XSS Hunting Pipeline
+Collects XSS vulnerabilities using various tools and saves them to a file.
+```bash
+echo https://example.com/ | gau | gf xss | uro | Gxss | kxss | tee xss_output.txt
+```
+## LFI Methodology
+Tests for Local File Inclusion (LFI) vulnerabilities using various methods.
+```bash
+echo "https://example.com/" | gau | gf lfi | uro | sed 's/=.*/=/' | qsreplace "FUZZ" | sort -u | xargs -I{} ffuf -u {} -w payloads/lfi.txt -c -mr "root:(x|\*|\$[^\:]*):0:0:" -v
+```
+## Basic CORS Check
+Checks the Cross-Origin Resource Sharing (CORS) policy of a website.
+```bash
+curl -H "Origin: http://example.com" -I https://example.com/wp-json/
+```
 
+## <img src="https://img.icons8.com/ios/50/000000/network-card.png" width="20"/> Network Scanning
+This section contains various one-liner commands and tools for scanning networks, identifying open ports, services, and potential vulnerabilities.
 
+## Nmap Full Scan
+Performs a full port scan using Nmap.
+```bash
+nmap -p- --min-rate 1000 -T4 -A example.com -oA fullscan
+```
