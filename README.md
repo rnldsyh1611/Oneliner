@@ -74,7 +74,7 @@ Checks the Cross-Origin Resource Sharing (CORS) policy of a website.
 curl -H "Origin: http://example.com" -I https://example.com/wp-json/
 ```
 
-## <img src="https://img.icons8.com/ios/50/000000/network-card.png" width="20"/> Network Scanning
+## 🌐 Network Scanning
 This section contains various one-liner commands and tools for scanning networks, identifying open ports, services, and potential vulnerabilities.
 
 ## Nmap Full Scan
