@@ -76,7 +76,9 @@ curl -H "Origin: http://example.com" -I https://example.com/wp-json/
 ## JS File Hunting
 Collects JavaScript files from a website and analyzes them.
 ```bash
-echo example.com | katana -d 5 | grep -E "\.js$" | tee website.txt | cat website.txt nuclei -t /path/to/nuclei-templates/http/exposures/ -c 30
+1. katana -u https://tkk.bekasikota.go.id -d 5 -jc | grep '\.js$' | tee alljs.txt
+2. cat alljs.txt | uro | sort -u | httpx -mc 200 -o tkk.txt
+3. cat tkk.txt | nuclei -t nuclei-templates/credentials-disclosure-all.yaml -c 30
 ```
 
 ## 🌐 Network Scanning
