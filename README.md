@@ -80,6 +80,13 @@ Collects JavaScript files from a website and analyzes them.
 2. cat alljs.txt | uro | sort -u | httpx -mc 200 -o tkk.txt
 3. cat tkk.txt | nuclei -t nuclei-templates/credentials-disclosure-all.yaml -c 30
 ```
+## Multiple Targets Find Backup Files
+To search for backup files from more than 2 targets
+```bash
+echo -e "https://admin.microsoft.com\nhttps://api.microsoft.com" | while read url; do 
+    backupfinder -u "$url" --silent | ffuf -w /dev/stdin -u "$url/FUZZ" -mc 200,403,500 -t 30
+done
+```
 
 ## 🌐 Network Scanning
 This section contains various one-liner commands and tools for scanning networks, identifying open ports, services, and potential vulnerabilities.
